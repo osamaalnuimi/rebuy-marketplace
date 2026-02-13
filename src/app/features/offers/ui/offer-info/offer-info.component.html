@@ -1,0 +1,18 @@
+<div class="offer-info">
+  <div class="offer-info__item">
+    <span class="offer-info__label">Condition</span>
+    <span class="offer-info__value">{{ condition() }}</span>
+  </div>
+  <div class="offer-info__item">
+    <span class="offer-info__label">Category</span>
+    <span class="offer-info__value">{{ category() }}</span>
+  </div>
+  <div class="offer-info__item">
+    <span class="offer-info__label">Seller</span>
+    <span class="offer-info__value">{{ seller() }}</span>
+  </div>
+  <div class="offer-info__item">
+    <span class="offer-info__label">Listed</span>
+    <span class="offer-info__value">{{ createdAt() | date: 'mediumDate' }}</span>
+  </div>
+</div>

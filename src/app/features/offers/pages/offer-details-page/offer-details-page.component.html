@@ -7,21 +7,12 @@
     </div>
 
     <div class="offer-details-page__content">
-      <div class="offer-details-page__image-section">
-        <img
-          [ngSrc]="currentOffer.imageUrl"
-          [alt]="currentOffer.title"
-          fill
-          priority="true"
-          class="offer-details-page__image"
-        />
-        <span
-          class="offer-details-page__condition-badge"
-          [class]="'offer-details-page__condition-badge--' + currentOffer.condition"
-        >
-          {{ currentOffer.condition }}
-        </span>
-      </div>
+      <offer-image
+        [imageUrl]="currentOffer.imageUrl"
+        [alt]="currentOffer.title"
+        [condition]="currentOffer.condition"
+        [priority]="true"
+      />
 
       <div class="offer-details-page__info">
         <div class="offer-details-page__header">
@@ -54,26 +45,12 @@
           <p>{{ currentOffer.description }}</p>
         </div>
 
-        <div class="offer-details-page__details-grid">
-          <div class="offer-details-page__detail-item">
-            <span class="offer-details-page__detail-label">Condition</span>
-            <span class="offer-details-page__detail-value">{{ currentOffer.condition }}</span>
-          </div>
-          <div class="offer-details-page__detail-item">
-            <span class="offer-details-page__detail-label">Category</span>
-            <span class="offer-details-page__detail-value">{{ currentOffer.category }}</span>
-          </div>
-          <div class="offer-details-page__detail-item">
-            <span class="offer-details-page__detail-label">Seller</span>
-            <span class="offer-details-page__detail-value">{{ currentOffer.seller }}</span>
-          </div>
-          <div class="offer-details-page__detail-item">
-            <span class="offer-details-page__detail-label">Listed</span>
-            <span class="offer-details-page__detail-value">
-              {{ currentOffer.createdAt | date: 'mediumDate' }}
-            </span>
-          </div>
-        </div>
+        <offer-info
+          [condition]="currentOffer.condition"
+          [category]="currentOffer.category"
+          [seller]="currentOffer.seller"
+          [createdAt]="currentOffer.createdAt"
+        />
 
         <div class="offer-details-page__actions">
           <button

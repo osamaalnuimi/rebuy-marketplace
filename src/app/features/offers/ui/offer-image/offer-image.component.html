@@ -1,0 +1,6 @@
+<div class="offer-image">
+  <img [ngSrc]="imageUrl()" [alt]="alt()" [priority]="priority()" fill class="offer-image__img" />
+  <span class="offer-image__badge" [class]="'offer-image__badge--' + condition()">
+    {{ condition() }}
+  </span>
+</div>

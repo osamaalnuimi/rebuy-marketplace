@@ -5,18 +5,7 @@ import { Offer, UserVote, VoteType } from '@shared/data-access/models/offer.mode
 import { OffersApiService } from '@shared/data-access/api/offers-api.service';
 
 /**
- * Centralized state management store for marketplace offers.
- *
- * @remarks
- * This store uses Angular's signal-based reactive primitives and rxResource for HTTP streaming.
- * Provides infinite scroll pagination, optimistic updates, and localStorage persistence for user votes.
- *
- * Key features:
- * - Infinite scroll with automatic page accumulation
- * - Signal-based reactive state (no subscriptions needed)
- * - Optimistic UI updates with API synchronization
- * - User vote tracking persisted to localStorage
- * - Automatic subscription management via rxResource
+ * Centralized state management for offers with infinite scroll and vote persistence.
  */
 @Injectable({
   providedIn: 'root',
@@ -29,10 +18,6 @@ export class OffersStore {
   private readonly accumulatedOffers = signal<Offer[]>([]);
   private readonly userVotesSignal = signal<UserVote[]>(this.loadUserVotes());
 
-  /**
-   * rxResource automatically manages HTTP subscription lifecycle.
-   * Triggers when currentPage changes and accumulates offers as side effect.
-   */
   private readonly offersResource = rxResource({
     params: () => ({ page: this.currentPage() }),
     stream: ({ params }) => {
@@ -44,24 +29,11 @@ export class OffersStore {
     },
   });
 
-  /**
-   * All loaded offers sorted by votes (highest first).
-   * Automatically recomputes when offers or votes change.
-   */
   readonly offers = computed(() => {
     return [...this.accumulatedOffers()].sort((a, b) => b.votes - a.votes);
   });
 
-  /**
-   * Loading state from the HTTP resource.
-   * True when fetching data from server.
-   */
   readonly loading = computed(() => this.offersResource.isLoading());
-
-  /**
-   * Error message from the last failed request.
-   * Null if no error occurred.
-   */
   readonly error = computed(() => this.offersResource.error()?.message ?? null);
 
   /**
@@ -73,9 +45,6 @@ export class OffersStore {
     return resource?.hasMore ?? true;
   });
 
-  /**
-   * All user votes (upvotes/downvotes) for offers.
-   */
   readonly userVotes = computed(() => this.userVotesSignal());
 
   /**
@@ -171,28 +140,16 @@ export class OffersStore {
     this.saveUserVotes();
   }
 
-  /**
-   * Adds a new vote to the user's vote collection.
-   * @private
-   */
   private addUserVote(offerId: string, voteType: VoteType): void {
     this.userVotesSignal.update((votes) => [...votes, { offerId, voteType }]);
   }
 
-  /**
-   * Updates an existing vote's type.
-   * @private
-   */
   private updateUserVote(offerId: string, voteType: VoteType): void {
     this.userVotesSignal.update((votes) =>
       votes.map((v) => (v.offerId === offerId ? { ...v, voteType } : v)),
     );
   }
 
-  /**
-   * Removes a user's vote for a specific offer.
-   * @private
-   */
   private removeVote(offerId: string): void {
     this.userVotesSignal.update((votes) => votes.filter((v) => v.offerId !== offerId));
   }
@@ -230,10 +187,6 @@ export class OffersStore {
     });
   }
 
-  /**
-   * Persists user votes to localStorage.
-   * @private
-   */
   private saveUserVotes(): void {
     localStorage.setItem('rebuy_user_votes', JSON.stringify(this.userVotesSignal()));
   }

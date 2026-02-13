@@ -1,0 +1,32 @@
+@use '../../../../styles/abstracts/variables' as *;
+@use '../../../../styles/abstracts/mixins' as *;
+
+.offer-info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+  padding: $spacing-xl;
+  background: $color-bg-secondary;
+  border-radius: $radius-md;
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+
+  &__item {
+    @include flex-column;
+    gap: $spacing-xs;
+  }
+
+  &__label {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    text-transform: uppercase;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__value {
+    font-size: $font-size-base;
+    color: $color-text-primary;
+    font-weight: $font-weight-medium;
+  }
+}

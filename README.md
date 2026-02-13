@@ -92,6 +92,23 @@ src/app/
 └── styles/              # Global styles
 ```
 
+## CI/CD
+
+This project includes GitHub Actions workflows for automated testing and Docker build verification:
+
+### Test Workflow
+
+- Runs on every push and pull request
+- Executes all Vitest tests with coverage
+- Uploads coverage reports to Codecov
+- View results in the "Actions" tab on GitHub
+
+### Docker Build Workflow
+
+- Builds the Docker image
+- Runs the container
+- Verifies the application is accessible
+
 ## Available Scripts
 
 ```bash

@@ -1,59 +1,116 @@
-# RebuyMarketplace
+# Rebuy Marketplace
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.4.
+A modern Angular marketplace application for buying and selling pre-owned items.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- Browse offers sorted by popularity
+- Vote on offers (upvote/downvote)
+- View detailed offer information
+- Purchase flow with confirmation
+- Responsive design for all devices
 
-```bash
-ng serve
-```
+## Tech Stack
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Angular 21+ with Signals
+- Standalone components
+- SCSS for styling
+- Vitest for testing
 
-## Code scaffolding
+## Quick Start
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Development
 
 ```bash
-ng build
+# Install dependencies
+npm install
+
+# Start dev server
+npm start
+
+# Open http://localhost:4200
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Testing
 
 ```bash
-ng test
+# Run tests
+npm test
+
+# Run tests once
+npm run test:run
+
+# Coverage report
+npm run test:coverage
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### Build
 
 ```bash
-ng e2e
+# Production build
+npm run build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Docker Deployment
 
-## Additional Resources
+### Using Docker Compose (Recommended)
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+# Start
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop
+docker-compose down
+```
+
+Access at `http://localhost:8080`
+
+### Using Docker
+
+```bash
+# Build
+docker build -t rebuy-marketplace .
+
+# Run
+docker run -d -p 8080:80 rebuy-marketplace
+```
+
+## Project Structure
+
+```
+src/app/
+├── features/
+│   └── offers/          # Offer feature module
+│       ├── pages/       # Smart components
+│       ├── ui/          # Presentational components
+│       └── data-access/ # Store & models
+├── shared/              # Shared services & components
+├── layout/              # Header & footer
+└── styles/              # Global styles
+```
+
+## Available Scripts
+
+```bash
+npm start              # Dev server
+npm test              # Run tests
+npm run build         # Production build
+npm run lint          # Lint code
+npm run docker:build  # Build Docker image
+npm run compose:up    # Start with Docker Compose
+```
+
+## License
+
+MIT
+
+## Development Time
+
+This MVP was built in ~2 hours following Rebuy's time constraints, focusing on core functionality and clean code architecture.
+
+---
+
+**Note**: This is an MVP (Minimum Viable Product) designed for rapid market entry. The architecture supports easy scaling and feature additions as the product grows.

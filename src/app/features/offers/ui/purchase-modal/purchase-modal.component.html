@@ -1,0 +1,49 @@
+<div
+  class="modal-overlay"
+  role="button"
+  tabindex="0"
+  (click)="onOverlayClick()"
+  (keydown.escape)="onOverlayClick()"
+>
+  <div
+    class="modal"
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1"
+    (click)="onModalClick($event)"
+    (keydown)="onModalClick($event)"
+  >
+    @if (!isSuccess()) {
+      <div class="modal__content">
+        <h2 class="modal__title">Confirm Purchase</h2>
+
+        <div class="purchase-summary">
+          <img [src]="offer().imageUrl" [alt]="offer().title" class="purchase-summary__image" />
+          <div class="purchase-summary__info">
+            <h3 class="purchase-summary__title">{{ offer().title }}</h3>
+            <p class="purchase-summary__price">{{ offer().price | currency: offer().currency }}</p>
+          </div>
+        </div>
+
+        <p class="modal__note">
+          You will be redirected to our secure checkout platform to complete your purchase.
+        </p>
+
+        <div class="modal__actions">
+          <button class="modal__button modal__button--primary" (click)="onConfirm()" type="button">
+            Proceed to Checkout
+          </button>
+          <button class="modal__button modal__button--secondary" (click)="onClose()" type="button">
+            Cancel
+          </button>
+        </div>
+      </div>
+    } @else {
+      <div class="modal__content modal__content--success">
+        <div class="success-icon">✓</div>
+        <h2 class="modal__title">Purchase Initiated!</h2>
+        <p class="modal__note">Redirecting you to checkout...</p>
+      </div>
+    }
+  </div>
+</div>

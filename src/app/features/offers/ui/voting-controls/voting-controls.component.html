@@ -1,0 +1,21 @@
+<div class="voting">
+  <button
+    class="voting__button voting__button--up"
+    [class.voting__button--active]="userVote() === 1"
+    (click)="onUpvote($event)"
+    type="button"
+    aria-label="Upvote"
+  >
+    ▲
+  </button>
+  <span class="voting__count">{{ votes() }}</span>
+  <button
+    class="voting__button voting__button--down"
+    [class.voting__button--active]="userVote() === -1"
+    (click)="onDownvote($event)"
+    type="button"
+    aria-label="Downvote"
+  >
+    ▼
+  </button>
+</div>

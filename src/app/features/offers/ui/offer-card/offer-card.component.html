@@ -1,0 +1,51 @@
+<article class="offer-card" [routerLink]="[offer().id]">
+  <div class="offer-card__image-container">
+    @if (priority()) {
+      <img
+        [ngSrc]="offer().imageUrl"
+        [alt]="offer().title"
+        fill
+        class="offer-card__image"
+        priority
+      />
+    } @else {
+      <img
+        [ngSrc]="offer().imageUrl"
+        [alt]="offer().title"
+        fill
+        class="offer-card__image"
+        loading="lazy"
+      />
+    }
+    <span
+      class="offer-card__condition-badge"
+      [class]="'offer-card__condition-badge--' + offer().condition"
+    >
+      {{ offer().condition }}
+    </span>
+  </div>
+
+  <div class="offer-card__content">
+    <div class="offer-card__header">
+      <h2 class="offer-card__title">{{ offer().title }}</h2>
+      <span class="offer-card__category">{{ offer().category }}</span>
+    </div>
+
+    <p class="offer-card__description">{{ offer().description }}</p>
+
+    <div class="offer-card__footer">
+      <div class="offer-card__price-section">
+        <span class="offer-card__price">{{ offer().price | currency: offer().currency }}</span>
+        <span class="offer-card__seller">by {{ offer().seller }}</span>
+      </div>
+
+      <voting-controls
+        [votes]="offer().votes"
+        [userVote]="userVote()"
+        (upvote)="upvoteClicked.emit()"
+        (downvote)="downvoteClicked.emit()"
+      >
+      </voting-controls>
+    </div>
+  </div>
+</article>

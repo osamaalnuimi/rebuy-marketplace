@@ -1,0 +1,98 @@
+@use '../../../../styles/abstracts/variables' as *;
+@use '../../../../styles/abstracts/mixins' as *;
+
+.modal-overlay {
+  @include modal-overlay;
+}
+
+.modal {
+  background: $color-bg-primary;
+  border-radius: $radius-lg;
+  padding: $spacing-2xl;
+  max-width: 500px;
+  width: 90%;
+  animation: slideUp $transition-normal;
+
+  &__content {
+    &--success {
+      text-align: center;
+      padding: $spacing-2xl;
+    }
+  }
+
+  &__title {
+    @include heading-3;
+    margin: 0 0 $spacing-xl 0;
+  }
+
+  &__note {
+    @include body-text;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-lg;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__button {
+    flex: 1;
+
+    &--primary {
+      @include button-primary;
+    }
+
+    &--secondary {
+      @include button-secondary;
+    }
+  }
+}
+
+.purchase-summary {
+  display: flex;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  padding: $spacing-lg;
+  background: $color-bg-secondary;
+  border-radius: $radius-md;
+
+  &__image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: $radius-md;
+  }
+
+  &__info {
+    flex: 1;
+  }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    margin: 0 0 $spacing-sm 0;
+  }
+
+  &__price {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+    margin: 0;
+  }
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: $color-success;
+  color: white;
+  border-radius: 50%;
+  @include flex-center;
+  font-size: $font-size-4xl;
+  margin: 0 auto $spacing-lg;
+}

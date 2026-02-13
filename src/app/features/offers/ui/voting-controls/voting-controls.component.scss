@@ -1,0 +1,48 @@
+@use '../../../../styles/abstracts/variables' as *;
+@use '../../../../styles/abstracts/mixins' as *;
+
+.voting {
+  @include flex-center;
+  gap: $spacing-sm;
+  background: $color-bg-secondary;
+  padding: $spacing-sm;
+  border-radius: $radius-md;
+
+  &__button {
+    background: $color-bg-primary;
+    border: 1px solid $color-border;
+    width: 32px;
+    height: 32px;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    @include flex-center;
+    font-size: $font-size-sm;
+    transition: all $transition-fast;
+    color: $color-text-secondary;
+
+    &:hover {
+      background: $color-bg-tertiary;
+    }
+
+    @include focus-visible;
+
+    &--up.voting__button--active {
+      background: $color-success;
+      color: white;
+      border-color: $color-success;
+    }
+
+    &--down.voting__button--active {
+      background: $color-danger;
+      color: white;
+      border-color: $color-danger;
+    }
+  }
+
+  &__count {
+    font-weight: $font-weight-semibold;
+    color: $color-text-primary;
+    min-width: 2rem;
+    text-align: center;
+  }
+}

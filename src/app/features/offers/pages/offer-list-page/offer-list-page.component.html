@@ -13,14 +13,17 @@
 
   <div class="offer-list-page__grid">
     @for (offer of offers(); track offer.id; let idx = $index) {
-      <offer-card
-        [offer]="offer"
-        [userVote]="getUserVote(offer.id)"
-        [priority]="idx < 4"
-        (upvoteClicked)="onUpvote(offer.id)"
-        (downvoteClicked)="onDownvote(offer.id)"
-      >
-      </offer-card>
+      @defer (on viewport) {
+        <offer-card
+          [offer]="offer"
+          [userVote]="getUserVote(offer.id)"
+          [priority]="idx < 4"
+          (upvoteClicked)="onUpvote(offer.id)"
+          (downvoteClicked)="onDownvote(offer.id)"
+        />
+      } @placeholder {
+        <div class="offer-list-page__card-placeholder"></div>
+      }
     } @empty {
       @if (!loading()) {
         <div class="offer-list-page__empty">

@@ -1,0 +1,111 @@
+@if (offer(); as currentOffer) {
+  <div class="offer-details-page">
+    <div class="offer-details-page__navigation">
+      <button class="offer-details-page__back-btn" (click)="goBack()" type="button">
+        ← Back to Marketplace
+      </button>
+    </div>
+
+    <div class="offer-details-page__content">
+      <div class="offer-details-page__image-section">
+        <img
+          [ngSrc]="currentOffer.imageUrl"
+          [alt]="currentOffer.title"
+          fill
+          priority="true"
+          class="offer-details-page__image"
+        />
+        <span
+          class="offer-details-page__condition-badge"
+          [class]="'offer-details-page__condition-badge--' + currentOffer.condition"
+        >
+          {{ currentOffer.condition }}
+        </span>
+      </div>
+
+      <div class="offer-details-page__info">
+        <div class="offer-details-page__header">
+          <div>
+            <h1 class="offer-details-page__title">{{ currentOffer.title }}</h1>
+            <div class="offer-details-page__meta">
+              <span class="offer-details-page__category">{{ currentOffer.category }}</span>
+              <span class="offer-details-page__separator">•</span>
+              <span class="offer-details-page__seller">Sold by {{ currentOffer.seller }}</span>
+            </div>
+          </div>
+
+          <voting-controls
+            [votes]="currentOffer.votes"
+            [userVote]="userVote()"
+            (upvote)="onUpvote()"
+            (downvote)="onDownvote()"
+          >
+          </voting-controls>
+        </div>
+
+        <div class="offer-details-page__price-section">
+          <span class="offer-details-page__price">
+            {{ currentOffer.price | currency: currentOffer.currency }}
+          </span>
+        </div>
+
+        <div class="offer-details-page__description">
+          <h2 class="offer-details-page__section-title">Description</h2>
+          <p>{{ currentOffer.description }}</p>
+        </div>
+
+        <div class="offer-details-page__details-grid">
+          <div class="offer-details-page__detail-item">
+            <span class="offer-details-page__detail-label">Condition</span>
+            <span class="offer-details-page__detail-value">{{ currentOffer.condition }}</span>
+          </div>
+          <div class="offer-details-page__detail-item">
+            <span class="offer-details-page__detail-label">Category</span>
+            <span class="offer-details-page__detail-value">{{ currentOffer.category }}</span>
+          </div>
+          <div class="offer-details-page__detail-item">
+            <span class="offer-details-page__detail-label">Seller</span>
+            <span class="offer-details-page__detail-value">{{ currentOffer.seller }}</span>
+          </div>
+          <div class="offer-details-page__detail-item">
+            <span class="offer-details-page__detail-label">Listed</span>
+            <span class="offer-details-page__detail-value">
+              {{ currentOffer.createdAt | date: 'mediumDate' }}
+            </span>
+          </div>
+        </div>
+
+        <div class="offer-details-page__actions">
+          <button
+            class="offer-details-page__purchase-btn"
+            (click)="openPurchaseModal()"
+            type="button"
+          >
+            Purchase Now
+          </button>
+          <button class="offer-details-page__continue-btn" routerLink="/" type="button">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  @if (showPurchaseModal()) {
+    <purchase-modal
+      [offer]="currentOffer"
+      [isSuccess]="purchaseSuccess()"
+      (confirm)="confirmPurchase()"
+      (closeModal)="closePurchaseModal()"
+    >
+    </purchase-modal>
+  }
+} @else {
+  <div class="offer-details-page__not-found">
+    <h1>Offer Not Found</h1>
+    <p>The offer you're looking for doesn't exist.</p>
+    <button class="offer-details-page__back-btn" routerLink="/" type="button">
+      Return to Marketplace
+    </button>
+  </div>
+}

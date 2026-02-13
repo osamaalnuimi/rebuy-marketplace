@@ -1,0 +1,213 @@
+@use '../../../../styles/abstracts/variables' as *;
+@use '../../../../styles/abstracts/mixins' as *;
+
+.offer-details-page {
+  @include container;
+
+  &__navigation {
+    margin-bottom: $spacing-2xl;
+  }
+
+  &__back-btn {
+    @include button-secondary;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-3xl;
+    background: $color-bg-primary;
+    border-radius: $radius-lg;
+    padding: $spacing-2xl;
+    box-shadow: $shadow-sm;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $spacing-2xl;
+      padding: $spacing-xl;
+    }
+  }
+
+  &__image-section {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: $radius-lg;
+    overflow: hidden;
+    background: $color-bg-tertiary;
+
+    @include tablet {
+      height: 400px;
+    }
+
+    @include mobile {
+      height: 300px;
+    }
+  }
+
+  &__image {
+    object-fit: cover;
+  }
+
+  &__condition-badge {
+    position: absolute;
+    top: $spacing-lg;
+    right: $spacing-lg;
+    @include badge($color-primary, $color-primary);
+    font-size: $font-size-sm;
+
+    &--new {
+      @include badge($color-condition-new, $color-condition-new);
+    }
+
+    &--like-new {
+      @include badge($color-condition-like-new, $color-condition-like-new);
+    }
+
+    &--good {
+      @include badge($color-condition-good, $color-condition-good);
+    }
+
+    &--fair {
+      @include badge($color-condition-fair, $color-condition-fair);
+    }
+  }
+
+  &__info {
+    @include flex-column;
+    gap: $spacing-xl;
+  }
+
+  &__header {
+    @include flex-between;
+    align-items: flex-start;
+    gap: $spacing-lg;
+    padding-bottom: $spacing-xl;
+    border-bottom: 1px solid $color-border;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    @include heading-2;
+    margin: 0 0 $spacing-sm 0;
+
+    @include mobile {
+      font-size: $font-size-xl;
+    }
+  }
+
+  &__meta {
+    @include flex-center;
+    gap: $spacing-sm;
+    @include small-text;
+  }
+
+  &__category {
+    background: $color-bg-tertiary;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-lg;
+  }
+
+  &__separator {
+    color: $color-border-dark;
+  }
+
+  &__price-section {
+    padding: $spacing-xl 0;
+  }
+
+  &__price {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    color: $color-primary;
+
+    @include mobile {
+      font-size: $font-size-3xl;
+    }
+  }
+
+  &__description {
+    h2 {
+      margin: 0 0 $spacing-md 0;
+    }
+
+    p {
+      @include body-text;
+      margin: 0;
+    }
+  }
+
+  &__section-title {
+    @include heading-3;
+  }
+
+  &__details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-lg;
+    padding: $spacing-xl;
+    background: $color-bg-secondary;
+    border-radius: $radius-md;
+
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__detail-item {
+    @include flex-column;
+    gap: $spacing-xs;
+  }
+
+  &__detail-label {
+    font-size: $font-size-xs;
+    color: $color-text-secondary;
+    text-transform: uppercase;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__detail-value {
+    font-size: $font-size-base;
+    color: $color-text-primary;
+    font-weight: $font-weight-medium;
+  }
+
+  &__actions {
+    display: flex;
+    gap: $spacing-lg;
+    margin-top: auto;
+
+    @include mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__purchase-btn {
+    flex: 1;
+    @include button-primary;
+  }
+
+  &__continue-btn {
+    flex: 1;
+    @include button-secondary;
+  }
+
+  &__not-found {
+    @include container;
+    text-align: center;
+    padding: $spacing-3xl $spacing-2xl;
+
+    h1 {
+      @include heading-2;
+      margin-bottom: $spacing-lg;
+    }
+
+    p {
+      @include body-text;
+      margin-bottom: $spacing-2xl;
+    }
+  }
+}

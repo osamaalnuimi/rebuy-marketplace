@@ -1,0 +1,42 @@
+<div class="offer-list-page">
+  <header class="offer-list-page__header">
+    <h1 class="offer-list-page__title">Discover Great Deals</h1>
+    <p class="offer-list-page__subtitle">Browse quality pre-owned items from trusted sellers</p>
+  </header>
+
+  @if (error()) {
+    <div class="offer-list-page__error">
+      <p>{{ error() }}</p>
+      <button (click)="loadMore()" type="button">Retry</button>
+    </div>
+  }
+
+  <div class="offer-list-page__grid">
+    @for (offer of offers(); track offer.id; let idx = $index) {
+      <offer-card
+        [offer]="offer"
+        [userVote]="getUserVote(offer.id)"
+        [priority]="idx < 4"
+        (upvoteClicked)="onUpvote(offer.id)"
+        (downvoteClicked)="onDownvote(offer.id)"
+      >
+      </offer-card>
+    } @empty {
+      @if (!loading()) {
+        <div class="offer-list-page__empty">
+          <p>No offers available at the moment.</p>
+        </div>
+      }
+    }
+  </div>
+
+  @if (loading()) {
+    <rb-loading-spinner message="Loading more offers..." />
+  }
+
+  @if (!loading() && !hasMore() && offers().length > 0) {
+    <div class="offer-list-page__end">
+      <p>You've reached the end!</p>
+    </div>
+  }
+</div>

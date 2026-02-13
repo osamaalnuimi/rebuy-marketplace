@@ -1,0 +1,59 @@
+@use '../../../styles/abstracts/variables' as *;
+
+.scroll-to-top {
+  position: fixed;
+  bottom: $spacing-2xl;
+  right: $spacing-2xl;
+  width: 48px;
+  height: 48px;
+  background: $color-primary;
+  color: white;
+  border: none;
+  border-radius: $radius-full;
+  box-shadow: $shadow-md;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all $transition-fast;
+  z-index: $z-dropdown;
+  animation: fadeInUp 0.3s ease;
+
+  &:hover {
+    background: $color-primary-dark;
+    transform: translateY(-2px);
+    box-shadow: $shadow-lg;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    bottom: $spacing-lg;
+    right: $spacing-lg;
+    width: 40px;
+    height: 40px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

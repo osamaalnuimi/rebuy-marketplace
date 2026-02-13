@@ -1,0 +1,78 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.footer {
+  background: $color-text-primary;
+  color: rgba(#fff, 0.8);
+  margin-top: auto;
+  min-height: 300px;
+  contain: layout;
+
+  &__container {
+    @include container;
+    padding-top: $spacing-3xl;
+    padding-bottom: $spacing-2xl;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: $spacing-3xl;
+    margin-bottom: $spacing-2xl;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $spacing-2xl;
+    }
+  }
+
+  &__section {
+    @include flex-column;
+    gap: $spacing-lg;
+  }
+
+  &__logo {
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: white;
+    margin: 0;
+  }
+
+  &__description {
+    font-size: $font-size-sm;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  &__title {
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    color: white;
+    margin: 0;
+  }
+
+  &__links {
+    @include flex-column;
+    gap: $spacing-md;
+  }
+
+  &__link {
+    font-size: $font-size-sm;
+    transition: color $transition-fast;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &__bottom {
+    padding-top: $spacing-2xl;
+    border-top: 1px solid rgba(#fff, 0.1);
+    text-align: center;
+  }
+
+  &__copyright {
+    font-size: $font-size-sm;
+    margin: 0;
+  }
+}

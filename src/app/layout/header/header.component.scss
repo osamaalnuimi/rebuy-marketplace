@@ -1,0 +1,71 @@
+@use '../../styles/abstracts/variables' as *;
+@use '../../styles/abstracts/mixins' as *;
+
+.header {
+  background: $color-bg-primary;
+  box-shadow: $shadow-sm;
+  position: sticky;
+  top: 0;
+  z-index: $z-header;
+  min-height: 80px;
+  contain: layout;
+
+  &__container {
+    @include container;
+    @include flex-between;
+    padding-top: $spacing-lg;
+    padding-bottom: $spacing-lg;
+    min-height: 80px;
+  }
+
+  &__logo {
+    @include flex-center;
+    gap: $spacing-sm;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    cursor: pointer;
+    transition: opacity $transition-fast;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__logo-text {
+    color: $color-text-primary;
+  }
+
+  &__logo-accent {
+    color: $color-primary;
+  }
+
+  &__nav {
+    @include flex-center;
+    gap: $spacing-2xl;
+  }
+
+  &__nav-link {
+    font-size: $font-size-base;
+    font-weight: $font-weight-medium;
+    color: $color-text-secondary;
+    transition: color $transition-fast;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-sm;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &--active {
+      color: $color-primary;
+      background: rgba($color-primary, 0.1);
+    }
+  }
+
+  @include mobile {
+    &__container {
+      flex-direction: column;
+      gap: $spacing-lg;
+    }
+  }
+}

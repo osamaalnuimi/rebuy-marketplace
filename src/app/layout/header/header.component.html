@@ -1,0 +1,19 @@
+<header class="header">
+  <div class="header__container">
+    <a routerLink="/" class="header__logo">
+      <span class="header__logo-text">Rebuy</span>
+      <span class="header__logo-accent">Marketplace</span>
+    </a>
+
+    <nav class="header__nav">
+      <a
+        routerLink="/"
+        class="header__nav-link"
+        routerLinkActive="header__nav-link--active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Browse
+      </a>
+    </nav>
+  </div>
+</header>

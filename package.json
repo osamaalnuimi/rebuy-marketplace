@@ -6,7 +6,19 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:run": "ng test --watch=false",
+    "test:coverage": "ng test --watch=false --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "docker:build": "docker build -t rebuy-marketplace .",
+    "docker:run": "docker run -d -p 8080:80 --name rebuy-app rebuy-marketplace",
+    "docker:stop": "docker stop rebuy-app && docker rm rebuy-app",
+    "docker:logs": "docker logs -f rebuy-app",
+    "compose:up": "docker-compose up -d",
+    "compose:down": "docker-compose down",
+    "compose:logs": "docker-compose logs -f",
+    "compose:rebuild": "docker-compose up -d --build"
   },
   "prettier": {
     "printWidth": 100,
@@ -36,8 +48,16 @@
     "@angular/build": "^21.1.4",
     "@angular/cli": "^21.1.4",
     "@angular/compiler-cli": "^21.1.0",
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^25.2.3",
+    "angular-eslint": "^21.2.0",
+    "eslint": "^9.18.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.2",
     "jsdom": "^27.1.0",
+    "prettier": "^3.4.2",
     "typescript": "~5.9.2",
+    "typescript-eslint": "^8.20.0",
     "vitest": "^4.0.8"
   }
 }

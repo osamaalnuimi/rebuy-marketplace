@@ -113,5 +113,3 @@ docker run -d -p 8080:80 --name rebuy-app rebuy-marketplace
 - ✅ Configure backups
 - ✅ Set resource limits
 - ✅ Enable logging
-
-That's it! Keep it simple.

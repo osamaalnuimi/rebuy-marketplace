@@ -106,11 +106,3 @@ npm run compose:up    # Start with Docker Compose
 ## License
 
 MIT
-
-## Development Time
-
-This MVP was built in ~2 hours following Rebuy's time constraints, focusing on core functionality and clean code architecture.
-
----
-
-**Note**: This is an MVP (Minimum Viable Product) designed for rapid market entry. The architecture supports easy scaling and feature additions as the product grows.

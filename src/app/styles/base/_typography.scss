@@ -1,0 +1,158 @@
+@use '../abstracts/variables' as *;
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: $font-weight-bold;
+  line-height: 1.2;
+  margin-bottom: $spacing-md;
+  color: $color-text-primary;
+}
+
+h1 {
+  font-size: $font-size-4xl;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: $font-size-3xl;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: $font-size-2xl;
+}
+
+h4 {
+  font-size: $font-size-xl;
+}
+
+h5 {
+  font-size: $font-size-lg;
+}
+
+h6 {
+  font-size: $font-size-base;
+  font-weight: $font-weight-semibold;
+}
+
+// Body text
+p {
+  margin-bottom: $spacing-lg;
+  line-height: 1.6;
+  color: $color-text-primary;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Text utilities
+.text {
+  &--primary {
+    color: $color-text-primary;
+  }
+
+  &--secondary {
+    color: $color-text-secondary;
+  }
+
+  &--tertiary {
+    color: $color-text-tertiary;
+  }
+
+  &--xs {
+    font-size: $font-size-xs;
+  }
+
+  &--sm {
+    font-size: $font-size-sm;
+  }
+
+  &--base {
+    font-size: $font-size-base;
+  }
+
+  &--lg {
+    font-size: $font-size-lg;
+  }
+
+  &--xl {
+    font-size: $font-size-xl;
+  }
+
+  &--2xl {
+    font-size: $font-size-2xl;
+  }
+
+  &--3xl {
+    font-size: $font-size-3xl;
+  }
+
+  &--4xl {
+    font-size: $font-size-4xl;
+  }
+
+  &--normal {
+    font-weight: $font-weight-normal;
+  }
+
+  &--medium {
+    font-weight: $font-weight-medium;
+  }
+
+  &--semibold {
+    font-weight: $font-weight-semibold;
+  }
+
+  &--bold {
+    font-weight: $font-weight-bold;
+  }
+}
+
+// Links
+a {
+  color: $color-primary;
+  transition: color $transition-fast;
+
+  &:hover {
+    color: $color-primary-dark;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-radius: $radius-sm;
+  }
+}
+
+// Small text
+small {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+}
+
+// Strong and emphasis
+strong,
+b {
+  font-weight: $font-weight-bold;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+// Code
+code {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.9em;
+  background: $color-bg-tertiary;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  color: $color-text-primary;
+}

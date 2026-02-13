@@ -1,0 +1,253 @@
+@use 'variables' as *;
+
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media (min-width: $breakpoint-wide) {
+    @content;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Typography
+@mixin heading-1 {
+  font-size: $font-size-4xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  line-height: 1.2;
+}
+
+@mixin heading-2 {
+  font-size: $font-size-3xl;
+  font-weight: $font-weight-bold;
+  color: $color-text-primary;
+  line-height: 1.3;
+}
+
+@mixin heading-3 {
+  font-size: $font-size-2xl;
+  font-weight: $font-weight-semibold;
+  color: $color-text-primary;
+  line-height: 1.4;
+}
+
+@mixin body-text {
+  font-size: $font-size-base;
+  color: $color-text-secondary;
+  line-height: 1.6;
+}
+
+@mixin small-text {
+  font-size: $font-size-sm;
+  color: $color-text-secondary;
+  line-height: 1.5;
+}
+
+// Card
+@mixin card {
+  background: $color-bg-primary;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  transition:
+    transform $transition-fast,
+    box-shadow $transition-fast;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+}
+
+// Button
+@mixin button-base {
+  padding: $spacing-md $spacing-xl;
+  border-radius: $radius-md;
+  font-weight: $font-weight-semibold;
+  cursor: pointer;
+  transition: all $transition-fast;
+  border: none;
+  font-size: $font-size-base;
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $color-primary;
+  color: white;
+
+  &:hover {
+    background: $color-primary-dark;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@mixin button-secondary {
+  @include button-base;
+  background: $color-bg-primary;
+  color: $color-text-primary;
+  border: 1px solid $color-border;
+
+  &:hover {
+    background: $color-bg-secondary;
+  }
+}
+
+// Badge
+@mixin badge($bg-color, $text-color) {
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-xl;
+  font-size: $font-size-xs;
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  background: rgba($bg-color, 0.1);
+  color: $text-color;
+  border: 1px solid $bg-color;
+}
+
+// Truncate text
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Container
+@mixin container {
+  max-width: $grid-max-width;
+  margin: 0 auto;
+  padding: $spacing-2xl $spacing-lg;
+
+  @include mobile {
+    padding: $spacing-lg $spacing-sm;
+  }
+}
+
+// Grid
+@mixin grid($columns: 3, $gap: $grid-gap) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: $gap;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: calc(($height / $width) * 100%);
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// Focus visible
+@mixin focus-visible {
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Modal overlay
+@mixin modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-modal;
+  animation: fadeIn $transition-fast;
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

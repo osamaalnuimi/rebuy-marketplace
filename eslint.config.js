@@ -3,6 +3,7 @@ const eslint = require('@eslint/js');
 const tseslint = require('typescript-eslint');
 const angular = require('angular-eslint');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
+const { rules } = require('eslint-config-prettier');
 
 module.exports = [
   {
@@ -69,4 +70,16 @@ module.exports = [
     rules: {},
   },
   eslintPluginPrettierRecommended,
+  {
+    files: ['**/*.{ts,html}'],
+    rules: {
+      ...rules,
+      'prettier/prettier': [
+        'warn',
+        {
+          endOfLine: 'auto',
+        },
+      ],
+    },
+  },
 ];

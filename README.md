@@ -92,6 +92,8 @@ src/app/
 └── styles/              # Global styles
 ```
 
+For detailed architecture principles, design patterns, and best practices, see [ARCHITECTURE.md](ARCHITECTURE.md).
+
 ## CI/CD
 
 This project includes GitHub Actions workflows for automated testing and Docker build verification:
